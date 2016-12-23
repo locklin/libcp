@@ -1,5 +1,7 @@
 #include "cp.h"
 #include <iostream>
+#include <chrono>
+#include <cstring>
 #include <fstream>
 #include <iomanip>
 
@@ -40,11 +42,15 @@ int main(int argc, char *argv[]) {
   cred = new double[prob->num_ex];
   indices = new int[prob->num_ex];
 
-  std::chrono::time_point<std::chrono::steady_clock> start_time = std::chrono::high_resolution_clock::now();
+  //  std::chrono::time_point<std::chrono::steady_clock> start_time = std::chrono::high_resolution_clock::now();
+
+  auto start_time = std::chrono::high_resolution_clock::now();
 
   OnlinePredict(prob, &param, predict_labels, indices, conf, cred);
 
-  std::chrono::time_point<std::chrono::steady_clock> end_time = std::chrono::high_resolution_clock::now();
+  //  std::chrono::time_point<std::chrono::steady_clock> end_time = std::chrono::high_resolution_clock::now();
+
+  auto end_time = std::chrono::high_resolution_clock::now();
 
   output_file << prob->y[indices[0]] << '\n';
 

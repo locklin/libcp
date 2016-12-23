@@ -1,6 +1,7 @@
 #include "knn.h"
 #include <cmath>
 #include <fstream>
+#include <cstring>
 
 double CalcDist(const struct Node *x1, const struct Node *x2) {
   double sum = 0;

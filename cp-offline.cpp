@@ -1,4 +1,6 @@
 #include "cp.h"
+#include <cstring>
+#include <chrono>
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -38,7 +40,11 @@ int main(int argc, char *argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  std::chrono::time_point<std::chrono::steady_clock> start_time = std::chrono::high_resolution_clock::now();
+  //  std::chrono::time_point<std::chrono::steady_clock> start_time = std::chrono::high_resolution_clock::now();
+
+  //std::chrono::steady_clock::time_point start_time = std::chrono::high_resolution_clock::now();
+
+     auto start_time = std::chrono::high_resolution_clock::now();
 
   if (param.load_model == 1) {
     model = LoadModel(model_file_name);
@@ -93,7 +99,10 @@ int main(int argc, char *argv[]) {
   avg_conf /= test->num_ex;
   avg_cred /= test->num_ex;
 
-  std::chrono::time_point<std::chrono::steady_clock> end_time = std::chrono::high_resolution_clock::now();
+  //  std::chrono::time_point<std::chrono::steady_clock> end_time = std::chrono::high_resolution_clock::now();
+
+  //  std::chrono::steady_clock::time_point end_time = std::chrono::high_resolution_clock::now();
+      auto end_time = std::chrono::high_resolution_clock::now();
 
   std::cout << "Simple Accuracy: " << 100.0*num_correct/test->num_ex << '%'
             << " (" << num_correct << '/' << test->num_ex << ") "
@@ -105,7 +114,7 @@ int main(int argc, char *argv[]) {
             << "Empty Prediction: " << 100.0*num_empty/test->num_ex << "%\n";
   output_file.close();
 
-  std::cout << "Time cost: " << std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count()/1000.0 << " s\n";
+    std::cout << "Time cost: " << std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count()/1000.0 << " s\n";
 
   FreeProblem(train);
   FreeProblem(test);

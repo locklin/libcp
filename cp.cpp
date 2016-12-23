@@ -3,6 +3,8 @@
 #include <fstream>
 #include <cmath>
 #include <random>
+#include <cstring>
+#include <algorithm>
 
 static double CalcAlpha(double *min_same, double *min_diff, int num_neighbors) {
   double alpha;
